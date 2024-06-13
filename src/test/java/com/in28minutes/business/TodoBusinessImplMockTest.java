@@ -12,7 +12,7 @@ import org.junit.Test;
 import com.in28minutes.data.api.TodoService;
 import com.in28minutes.data.api.TodoServiceStub;
 
-public class TodoBusinessMockTest {
+public class TodoBusinessImplMockTest {
 	// What is mocking
 	// mocking is creating objects that simulates the behavior of real objects
 	// Unlike stubs, mocks can be dinamically created from code - at runtime.
