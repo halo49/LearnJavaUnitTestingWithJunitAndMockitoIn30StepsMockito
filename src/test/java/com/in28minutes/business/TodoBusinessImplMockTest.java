@@ -1,6 +1,7 @@
 package com.in28minutes.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -11,6 +12,10 @@ import org.junit.Test;
 
 import com.in28minutes.data.api.TodoService;
 import com.in28minutes.data.api.TodoServiceStub;
+
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willReturn;
+import static org.hamcrest.CoreMatchers.is;
 
 public class TodoBusinessImplMockTest {
 	// What is mocking
@@ -49,6 +54,25 @@ public class TodoBusinessImplMockTest {
 				.retrieveTodosRelatedToSpring("Dummy");
 		
 		assertEquals(0, filteredTodos.size());
+	}
+	
+	@Test
+	public void testRetrieveTodosRelatedToSpring_usingBDD() {
+		// Given
+		TodoService mockTodoService = mock(TodoService.class);
+		
+		List<String> todos = Arrays.asList("Learn Spring MVC", "Learn Spring", "Learn to Dance");
+
+		given(mockTodoService.retrieveTodos("Dummy")).willReturn(todos);
+		
+		TodoBusinessImpl todoBusinessImpl = new TodoBusinessImpl(mockTodoService);
+		
+		// When
+		List<String> filteredTodos = todoBusinessImpl
+				.retrieveTodosRelatedToSpring("Dummy");
+		
+		// Then
+		assertThat(filteredTodos.size(), is(2));
 	}
 	
 }
