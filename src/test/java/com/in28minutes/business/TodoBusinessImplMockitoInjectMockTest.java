@@ -9,13 +9,16 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.MockitoRule;
 
 import com.in28minutes.data.api.TodoService;
 import static org.mockito.BDDMockito.given;
@@ -25,10 +28,15 @@ import static org.mockito.BDDMockito.atLeast;
 import static org.mockito.BDDMockito.then;
 import static org.hamcrest.CoreMatchers.is;
 
-// Esta anotacion es necesaria para poder utilizar la anotacion @Mock
-@RunWith(MockitoJUnitRunner.class)
+// @RunWith es necesaria para poder utilizar la anotacion @Mock
+// Al utilizar @Rule se puede quitar @RunWith que solo puede cargar una sola clase
+// y con la @Rule se pueden utilizar varias clases
+//@RunWith(MockitoJUnitRunner.class)
 public class TodoBusinessImplMockitoInjectMockTest {
 
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
 	@Mock
 	TodoService todoServiceMock;
 	
