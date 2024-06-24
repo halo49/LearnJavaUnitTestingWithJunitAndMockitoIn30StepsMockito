@@ -14,8 +14,8 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest( UtilityClass.class)
+@RunWith(PowerMockRunner.class)			// Paso 1
+@PrepareForTest( UtilityClass.class)	// Paso 2
 public class PowerMockitoMockingStaticMethodTest {
 
 	@Mock
@@ -30,6 +30,7 @@ public class PowerMockitoMockingStaticMethodTest {
 		when(dependencyMock.retrieveAllStats()).thenReturn(
 				Arrays.asList(1, 2, 3));
 
+		// Paso 3
 		PowerMockito.mockStatic(UtilityClass.class);
 
 		when(UtilityClass.staticMethod(anyLong())).thenReturn(150);
